@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abhinav K — Portfolio</title>
+  <meta name="description" content="Portfolio of Abhinav K — developer, student, tinkerer." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0d1117;        /* Darker, clean background for contrast */
+      --card: #161b22;      /* Slightly lighter than bg for subtle separation */
+      --muted: #8b949e;     /* Softer gray for secondary text */
+      --accent: #58a6ff;    
+      .card:hover { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.205); }
+
+      --radius: 14px;
+      --maxw: 1100px;
+      --gap: 18px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,#081021 0%, #061826 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:32px 20px;
+    }
+    .container{max-width:var(--maxw);margin:0 auto}
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:28px
+    }
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#4f46e5);display:grid;place-items:center;font-weight:800;color:white;font-size:20px;box-shadow:0 6px 18px rgba(124,58,237,0.18)
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600}
+    nav a:hover{color:white;background:var(--glass)}
+    .cta{background:linear-gradient(90deg,var(--accent),#06b6d4);padding:8px 12px;border-radius:10px;color:white;text-decoration:none;font-weight:700}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:30px;align-items:center;margin-bottom:36px}
+    @media (max-width:880px){.hero{grid-template-columns:1fr}}
+    .intro h1{font-size:clamp(28px,4vw,44px);margin:0 0 8px}
+    .intro p{color:var(--muted);margin:0 0 18px}
+    .actions{display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-flex;gap:8px;align-items:center}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .profile-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));padding:18px;border-radius:16px;backdrop-filter: blur(6px);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    .avatar{width:100%;height:320px;border-radius:12px;background:linear-gradient(180deg,#0b1220,#071022);display:flex;align-items:center;justify-content:center;flex-direction:column}
+    .avatar img{width:120px;height:120px;border-radius:999px;border:4px solid rgba(255,255,255,0.06)}
+    .meta{margin-top:12px;text-align:center}
+    .meta h3{margin:8px 0 2px}
+    .meta p{margin:0;color:var(--muted);font-size:14px}
+
+    /* Sections */
+    section{margin-bottom:30px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+    @media (max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:620px){.cards{grid-template-columns:1fr}}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .card h4{margin:0 0 8px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
+
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600;color:var(--muted)}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media (max-width:880px){.projects-grid{grid-template-columns:1fr}}
+    .proj{
+      border-radius:12px;padding:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));cursor:pointer;transition:transform .18s ease, box-shadow .18s ease;display:flex;flex-direction:column;gap:10px
+    }
+    .proj:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    .proj .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .proj img{width:100%;height:150px;object-fit:cover;border-radius:8px}
+
+    footer{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px dashed rgba(255,255,255,0.03);color:var(--muted)}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:60;padding:20px}
+    .modal.open{display:flex}
+    .modal-card{width:100%;max-width:900px;background:var(--card);padding:18px;border-radius:12px}
+    .modal-close{float:right;background:transparent;border:0;color:var(--muted);font-weight:700}
+
+    /* small extras */
+    input,textarea{font-family:inherit}
+    .form-row{display:flex;gap:12px}
+    @media (max-width:720px){.form-row{flex-direction:column}}
+    input,textarea{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* accessibility focus */
+    a:focus,button:focus,input:focus{outline:3px solid rgba(124,58,237,0.18);outline-offset:2px}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AK</div>
+        <div>
+          <div style="font-weight:800">Abhinav K</div>
+          <div class="small">BTech IT · Aspiring Software Developer & Python Developer</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h1>Hi, I’m Abhinav K — Aspiring SDE & Python Developer.</h1>
+          <p>An aspiring SDE and Python Developer. I enjoy building full‑stack projects and applying ML in side projects. Open to internships and collaborations.</p>
+          <div class="actions">
+            <a class="btn cta" href="#contact">Hire me</a>
+            <a class="btn btn-ghost" href="#projects">See projects</a>
+            <a class="btn btn-ghost" href="https://drive.google.com/file/d/15l0oXu7s8Tw2fvmP0TChPwfrtpd1M3Fl/view?usp=sharingid="downloadResume">Download Resume</a>
+          </div>
+        </div>
+        <aside class="profile-card">
+          <div class="avatar">
+            <img src="C:\Users\Abhinav K\Downloads\WhatsApp Image 2025-09-18 at 22.16.38_43fbd6ef.jpg" alt="avatar">
+            <div class="meta">
+              <h3>Abhinav K</h3>
+              <p>Developer • Student • Problem‑solver</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:12px;justify-content:space-between;">
+            <div style="text-align:center">
+              <div style="font-weight:700">2+</div>
+              <div class="small">years coding</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-weight:700">8+</div>
+              <div class="small">projects</div>
+            </div>
+            <div style="text-align:center">
+              <div style="font-weight:700">Open</div>
+              <div class="small">to internships</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="card">
+          <h4>About me</h4>
+          <p>I’m a second-year B.Tech IT student at SRM Institute of Science and Technology, aspiring to become a Software Development Engineer (SDE). Skilled in Python, C++ and web development, I enjoy building practical tools and projects that solve real-world problems.
+          I’m passionate about writing clean, efficient code and constantly learning new technologies to enhance my skills. My interests include software development, backend systems and problem-solving, and I aim to design scalable applications while contributing to impactful projects.</p>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+          <h3 style="margin:0">Projects</h3>
+          <div class="small">Click a project to view details</div>
+        </div>
+        <div class="projects-grid">
+          <article class="proj" data-title="Excuse Generator" data-img="https://10web.io/wp-content/uploads/2024/09/Excuse_Generator_screenshot.png" data-desc="Developed an AI-powered excuse generator using pre-trained LLMs. Integrated proof generator with image output for scenario validation." data-links='{"live":"https://5557b94e5c59e3c21a.gradio.live/","code":"https://colab.research.google.com/drive/1jBqls_7kzuiB6VwDJ9c5S3jlBnI5VFeb?usp=sharing"}'>
+            <img src="https://10web.io/wp-content/uploads/2024/09/Excuse_Generator_screenshot.png" alt="project">
+            <h4>Intelligent Excuse Generator</h4>
+            <div class="tags small"><span class="chip">Python</span><span class="chip">NLP</span><span class="chip">HuggingFace</span></div>
+            <p class="small">Developed an AI-powered excuse generator using pre-trained LLMs. Integrated proof generator with image output for scenario validation.</p>
+          </article>
+
+
+          <article class="proj" data-title="Hotel Management System" data-img="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=efgh" data-desc="Implemented customer records, room booking, billing, and availability tracking. Incorporated exception handling for reliable error management." data-links='{"live":"https://colab.research.google.com/drive/1VucJbbBtQLZ6qoRJgz2vN2P_UG3cpFiJ#scrollTo=_UxT0UTrlL0E","code":"https://github.com/AsceticMillennium20/Hotel-Management-System"}'>
+            <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=efgh" alt="project">
+            <h4>Hotel Management System</h4>
+            <div class="tags small"><span class="chip">C++</span><span class="chip">OOPs</span><span class="chip">Multithreading</span></div>
+            <p class="small">Implemented customer records, room booking, billing, and availability tracking. Incorporated exception handling for reliable error management.</p>
+          </article>
+
+
+          <article class="proj" data-title="Exam Mark Registry" data-img="C:\Users\Abhinav K\Pictures\Screenshots\Screenshot 2024-11-25 205324.png" data-desc="Managed student records with add, update, delete and search functionalities. Applied lists & dictionaries for efficient record management." data-links='{"live":"https://colab.research.google.com/drive/1wdzfNmN_-1ZIWD4ICRDyFyoTQMieREro","code":"https://github.com/AsceticMillennium20/Exam-Mark-Registry"}'>
+            <img src="C:\Users\Abhinav K\Pictures\Screenshots\Screenshot 2024-11-25 205324.png" alt="project">
+            <h4>Exam Mark Registry</h4>
+            <div class="tags small"><span class="chip">Python</span><span class="chip">File Handling</span><span class="chip">Data Structure</span></div>
+            <p class="small"> Managed student records with add/update/delete/search functionalities. Applied lists & dictionaries for efficient record management.</p>
+          </article>
+
+
+          <article class="proj" data-title="AI Powered Chatbot" data-img="https://images.prismic.io/intuzwebsite/d9daef05-a416-4e84-b0f8-2d5e2e3b58d8_A+Comprehensive+Guide+to+Building+an+AI+Chatbot%402x.png?auto=compress,format" data-desc="Deploy a chatbot with contextual responses and user interaction logs." data-links='{"live":"#","code":"#"}'>
+            <img src="https://images.prismic.io/intuzwebsite/d9daef05-a416-4e84-b0f8-2d5e2e3b58d8_A+Comprehensive+Guide+to+Building+an+AI+Chatbot%402x.png?auto=compress,format" alt="project">
+            <h4>AI Powered Chatbot</h4>
+            <div class="tags small"><span class="chip">Python</span><span class="chip">NLTK</span><span class="chip">Flask</span></div>
+            <p class="small"> Deploy a chatbot with contextual responses and user interaction logs.</p>
+          </article>
+
+
+          <article class="proj" data-title="AI Sentiment Analyzer" data-img="https://user-images.githubusercontent.com/36418892/179367902-63cd071b-5df4-4c0f-a6b7-7d5384a1b737.png" data-desc="Sentiment scoring (positive/negative/neutral) with visualized reports." data-links='{"live":"#","code":"#"}'>
+            <img src="https://user-images.githubusercontent.com/36418892/179367902-63cd071b-5df4-4c0f-a6b7-7d5384a1b737.png" alt="project">
+            <h4>AI Sentiment Analyzer</h4>
+            <div class="tags small"><span class="chip">Python</span><span class="chip">Flask</span><span class="chip">MongoDB</span></div>
+            <p class="small"> Sentiment scoring (positive/negative/neutral) with visualized reports.</p>
+          </article>
+
+
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="card">
+          <h4>Skills</h4>
+          <div class="skills" style="margin-top:12px">
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Git & GitHub</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">AWS</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="card">
+          <h4>Contact</h4>
+          <p class="small">Want to work together? Fill the form.</p>
+          <form id="contactForm" style="margin-top:12px">
+            <div class="form-row">
+              <input type="text" id="name" placeholder="Your name" required>
+              <input type="email" id="email" placeholder="Your email" required>
+            </div>
+            <textarea id="message" rows="4" placeholder="Message" required style="margin-top:10px"></textarea>
+            <div style="display:flex;gap:10px;margin-top:10px;align-items:center">
+              <button class="btn cta" type="submit">Send</button>
+              <div id="formMsg" class="small"></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Abhinav K</div>
+      <div class="small">Built with ❤️ • Accessible • Responsive</div>
+    </footer>
+  </div>
+
+  <!-- Modal markup -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose">Close ✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // small helper utilities
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    // project modal
+    document.querySelectorAll('.proj').forEach(card => {
+      card.addEventListener('click', ()=>{
+        const title = card.dataset.title;
+        const img = card.dataset.img;
+        const desc = card.dataset.desc;
+        const links = JSON.parse(card.dataset.links);
+        const c = document.getElementById('modal');
+        const content = document.getElementById('modalContent');
+        content.innerHTML = `<h2 style=\"margin-top:0\">${title}</h2><img src=\"${img}\" style=\"width:100%;height:260px;object-fit:cover;border-radius:8px\"><p style=\"margin-top:12px;color:var(--muted)\">${desc}</p><p style=\"margin-top:12px\"><a href=\"${links.live}\" class=\"btn btn-ghost\">Live</a> <a href=\"${links.code}\" class=\"btn btn-ghost\">Code</a></p>`;
+        c.classList.add('open');
+        c.setAttribute('aria-hidden','false');
+      })
+    })
+    document.getElementById('modalClose').addEventListener('click', ()=>{
+      const c = document.getElementById('modal');
+      c.classList.remove('open');
+      c.setAttribute('aria-hidden','true');
+    })
+    document.getElementById('modal').addEventListener('click', (e)=>{
+      if(e.target.id === 'modal'){
+        e.currentTarget.classList.remove('open');
+      }
+    })
+
+    // contact form validation & behaviour
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const msg = document.getElementById('formMsg');
+      if(!name || !email || !message){
+        msg.textContent = 'Please fill all fields.';
+        return;
+      }
+      // simple email check
+      if(!/^[^@]+@[^@]+\.[^@]+$/.test(email)){
+        msg.textContent = 'Please enter a valid email.';
+        return;
+      }
+      // no backend: create mailto link as fallback
+      const subject = encodeURIComponent('Contact from portfolio — ' + name);
+      const body = encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')');
+      window.location.href = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
+      msg.textContent = 'Opening mail client...';
+    })
+
+    // resume download placeholder
+    document.getElementById('downloadResume').addEventListener('click', ()=>{
+      // if you have a resume file, replace the URL below
+      const url = '#';
+      if(url === '#'){
+        alert('Add your resume URL in the HTML file at the downloadResume handler.');
+        return;
+      }
+      window.open(url, '_blank');
+    })
+
+    // smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      })
+    })
+
+    // small keyboard accessibility: close modal on ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        const c = document.getElementById('modal');
+        if(c.classList.contains('open')){ c.classList.remove('open'); }
+      }
+    })
+  </script>
+</body>
+</html>
